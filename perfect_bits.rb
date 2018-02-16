@@ -27,13 +27,11 @@ def perfect_bit?(a, seen = Hash.new(0))
 
   ones = 0
   a.chars.each { |n| ones += 1 if n == "1" }
-  return [true, seen] if ones
 
   if seen[ones] == -1 || seen[ones] == 1
     return seen[ones] == -1 ? [false, seen] : [true, seen]
   else
-    i = 1
-
+    i = seen.length > 0 ? seen.keys.max : 1
     until i ** 2 > ones
       if i ** 2 == ones
         seen[ones] = 1
